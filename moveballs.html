@@ -1,0 +1,43 @@
+<div id="container" style="position: relative; width: 500px; height: 500px;"></div>
+
+<script>
+
+// Create an array to store ball objects
+var balls = [
+  { velocityX: 5, velocityY: 3, positionX: 0, positionY: 200, color: 'green' },
+  { velocityX: 10, velocityY: 1, positionX: 0, positionY: 50, color: 'blue' },
+  {velocityX: 5, velocityY: 3, positionX: 0, positionY: 100, color: 'red'},
+  {velocityX: 7, velocityY: 5, positionX: 0, positionY: 150, color: 'purple'},
+  {velocityX: 7, velocityY: 10, positionX: 0, positionY: 200, color: 'black'}
+  // Add more balls with different velocities and positions as needed
+];
+
+// Create balls dynamically and append them to the container
+var container = document.getElementById('container');
+balls.forEach(function(ball) {
+  var ballElement = document.createElement('div');
+  ballElement.style.position = 'absolute';
+  ballElement.style.width = '50px';
+  ballElement.style.height = '50px';
+  ballElement.style.borderRadius = '50%';
+  ballElement.style.backgroundColor = ball.color;
+  container.appendChild(ballElement);
+
+  ball.element = ballElement; // Store the ball element in the ball object
+});
+
+function moveBalls() {
+  balls.forEach(function(ball) {
+    ball.positionX += ball.velocityX;
+    ball.positionY += ball.velocityY;
+
+    // Set the new position of each ball
+    ball.element.style.left = ball.positionX + 'px';
+    ball.element.style.top = ball.positionY + 'px';
+  });
+}
+
+// Call the moveBalls function periodically to animate the balls
+setInterval(moveBalls, 16); // Adjust the interval as needed for smooth animation
+
+</script>
